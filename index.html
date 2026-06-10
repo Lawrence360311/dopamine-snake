@@ -107,7 +107,7 @@ canvas{display:block;width:100%;height:100%}
 <script>
 // ===== 世界配置 =====
 const WW=2400,WH=3360,BASE_SPD=155,SPD_INC=7,MAX_SPD=420;
-const HEAD_R=11,BODY_R=9,BODY_SPACE=13,COLL_D=17;
+const HEAD_R=11,BODY_R=9,BODY_SPACE=9,COLL_D=17;
 const TURN_SPD=4.8,FOOD_R=18,CHEST_R=28;
 const FOOD_N=25,TRAIL_MAX=2500;
 const DC={head:'#FF6B9D',body:['#FF6B9D','#FF9D4D','#FFE44D','#6BFF9D','#4DDBFF','#4D7FFF','#C44DFF','#FF4DCF'],
@@ -245,7 +245,7 @@ function startGame(){
   talSet=new Set();talTrig=[50,100,200];talDone=new Set();
   revAvail=0;cWinB=0;fDurB=0;magRB=0;spdGR=0;spdFrz=false;
   particles=[];fTexts=[];trailP=[];flashA=0;paused=false;running=true;lastTs=0;
-  snake={len:15,grow:0};
+  snake={len:5,grow:0};
   document.getElementById('sc').textContent='0';document.getElementById('sp').textContent='1';
   ensureFood();initDecos();
   gA();if(AC&&AC.state==='suspended')AC.resume();if(muOn)stMu();
@@ -392,7 +392,7 @@ function update(dt,ts){
 }
 
 function doRevive(ts){revAvail--;const rm=Math.floor((snake.len+snake.grow)*0.2);
-  for(let i=0;i<rm&&snake.len>5;i++)snake.len--;
+  for(let i=0;i<rm&&snake.len>3;i++)snake.len--;
   invOn=true;invEnd=ts+2500;sHeading+=Math.PI;
   addFT('🍀 复活!',sx,sy-20,'#6BFF9D',20);addP(sx,sy,'#6BFF9D',10);sfRevive()}
 
